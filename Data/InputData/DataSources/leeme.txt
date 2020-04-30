@@ -1,3 +1,1 @@
-En esta carpeta, encontrarás:
-- Manual de usuario Encuesta Nacional de Empleo trimestre marzo-abril-mayo de 2019.
-- Base de datos bruta del mismo trimestre en formato RDS.
+Acá está el libro de códigos completo de la ENE trimestre MAM para 2019.

@@ -1,0 +1,3 @@
+Esta carpeta contiene la base de datos completa de la ENE trimestre MAM de 2019 en formato RDS.
+
+En DataSources podrás encontrar el libro de códigos para conocer más detalles. En la carpeta "IntermediateData" encontrarás la base filtrada para procesamientos estadísticos.
