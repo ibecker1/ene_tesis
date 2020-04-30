@@ -1,3 +1,0 @@
-En esta carpeta, encontrarás:
-- Manual de usuario Encuesta Nacional de Empleo trimestre marzo-abril-mayo de 2019.
-- Base de datos bruta del mismo trimestre en formato RDS.
