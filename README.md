@@ -30,7 +30,7 @@ Variables de empleo:
 
 Variables sociodemográficas:
 + Sexo: para identificar las desiguales condiciones por sexo registral (sexo).
-+ Tramo de edad: lo mismo que lo anterior, pero a nivel etario (tramo_edad).
++ Edad: edad simple **numérica** (edad).
 + Región de residencia: para saber cómo se comportan las variables a nivel local (region).
 + Nivel educativo: como gran indicador de desigualdades sociales (cine).
 
