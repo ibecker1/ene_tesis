@@ -25,8 +25,7 @@ Dada la magnitud del fenómeno, y ya que solo cuento con un semestre para su tra
 Variables de empleo: 
 + Situación de empleo a nivel desagregado: permite filtrar la base de datos para trabajar solo con quienes están ocupadxs.
 + Rama de actividad: permite conocer el área de actividad económica donde está empleada la persona (r_p_rev4cl_caenes).
-+ Formalidad ocupacional: permite saber si la ocupación es de caracter formal o informal, siendo un buen proxy de calidad del empleo (ocup_form).
-+ Posesión de contrato: permimte filtrar por quienes poseen o no contrato (b8).
++ Posesión de contrato: permite filtrar por quienes poseen o no contrato (b8).
 + Temporalidad contractual: variable categórica que nos muestra la duración de este contrato (definido o indefinido) (b9).
 + Factor de expansión: variable que permite expandir resultados a nivel poblacional, bajo diseño muestral complejo (fact_cal).
 
