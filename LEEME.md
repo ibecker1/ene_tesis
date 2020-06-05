@@ -6,7 +6,7 @@ Acá iré subiendo material de manera continua para que puedas replicar y reprod
 
 En base a las constantes problemáticas de inserción laboral juvenil en las últimas décadas, además de una subutilización de las fuentes de datos disponibles para medir sus condiciones, el presente proyecto busca aportar en una cuantificación de este fenómeno, mediante el uso de la Encuesta Nacional de Empleo del Instituto Nacional de Estadísticas.
 
-# Objetivos proyecto
+# Objetivos _actualizados_ proyecto
 
 ## Objetivo general
 
@@ -14,9 +14,9 @@ Caracterizar la temporalidad contractual de la población joven en Chile en base
 
 ## Objetivos específicos
 
-* Describir la temporalidad contractual de las y los jóvenes asalariados en Chile, según variables sociodemográficas (como sexo, edad, región de residencia).
+* Describir la temporalidad contractual de las y los jóvenes asalariados en Chile, según variables sociodemográficas (como sexo, edad, región de residencia) y educativa.
 * Identificar la temporalidad de la ocupación según las ramas de empleo de la población joven ocupada.
-* Caracterizar la temporalidad contractual según el nivel educativo de la persona joven asalariada.
+* Caracterizar la posesión de contrato por variables sociodemográficas.
 
 # Variables a utilizar
 
@@ -28,6 +28,7 @@ Variables de empleo:
 + Formalidad ocupacional: permite saber si la ocupación es de caracter formal o informal, siendo un buen proxy de calidad del empleo (ocup_form).
 + Posesión de contrato: permimte filtrar por quienes poseen o no contrato (b8).
 + Temporalidad contractual: variable categórica que nos muestra la duración de este contrato (definido o indefinido) (b9).
++ Factor de expansión: variable que permite expandir resultados a nivel poblacional, bajo diseño muestral complejo (fact_cal).
 
 Variables sociodemográficas:
 + Sexo: para identificar las desiguales condiciones por sexo registral (sexo).
