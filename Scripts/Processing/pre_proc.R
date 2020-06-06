@@ -3,12 +3,11 @@
 # Herramientas para la Investigación Social Cuantitativa: Ciencia Abierta y Software Libre
 
 # Carga paquetes(e instala si no) ----
-install.packages(c("summarytools", "pacman", "dplyr", "readxl", "tidyverse", "haven", "car", "sjmisc", "sjlabelled", "stargazer"))
+install.packages(c("plotly","summarytools", "pacman", "dplyr", "readxl", "tidyverse", "haven", "car", "sjmisc", "sjlabelled", "stargazer"))
 
 # abre todos de manera simultánea
-x <- c("summarytools", "pacman", "dplyr", "readxl", "tidyverse", "haven", "car", "sjmisc", "sjlabelled", "stargazer")
+x <- c("plotly","summarytools", "pacman", "dplyr", "readxl", "tidyverse", "haven", "car", "sjmisc", "sjlabelled", "stargazer")
 lapply(x, require, character.only = TRUE)
-
 
 # Cargar base de datos ----
 # abre bbdd en .dta, trimestre MAM 2019
@@ -189,6 +188,23 @@ ctable(ene$t_con, ene$tramo_etario, prop = "c",
 ## Por rama
 ctable(ene$t_con, ene$rama, prop = "c",
        weights = ene$fact_cal, rows=factor(ene$p_con==1))
+
+# ---- EXTRA: Gráficos resultados tipo contrato ---- 
+## Me faltan aun.
+
+g1 <- ene %>%
+ggplot()+
+        geom_bar(mapping = aes(x=p_con, y = (..count..)/sum(..count..), fill = factor(sexo)),
+                 position = "dodge") + # Probar sacando "position"
+        scale_y_continuous(labels=scales::percent) +
+        xlab("Posesión contrato") +
+        scale_fill_manual("Género",
+                          values = c("#E41A1C", "#377EB8"),
+                          labels = c("Hombre", "Mujer")) +
+        ylab("Porcentaje")+
+        facet_wrap(~rama, scale="free_y")
+
+ggplotly(g1) #interactivo
 
 # ---- Varios no revisar ----
 # Guardar en github
