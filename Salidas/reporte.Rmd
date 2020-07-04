@@ -1,16 +1,18 @@
 ---
 title: "Reporte investigación"
 author: "Ignacio Becker Bozo"
-date: "2/7/2020"
-output: pdf_document
+date: "7/2/2020"
+output:
+  word_document: default
+  pdf_document: default
+csl: apa.csl
 bibliography: biblio.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+ene <- readRDS(ene, file = "/cloud/project/Datos/InputData/ene.rds")
 library(summarytools)
-ene <- readRDS(file = "/cloud/project/Data/InputData/ene.rds")
-
 ```
 
 
@@ -42,12 +44,6 @@ A nivel de descriptivos preliminares, las variables a considerar son las siguien
 
 ```{r resumen var}
 dfSummary(ene, style = "grid")
-```
-
-Si queremos una tabla con mejor formato:
-
-```{r}
-knitr::kable(summary(cars))
 ```
 
 Puedes incorporar dentro del texto un resultado de una función de R, como `r 1 + 1` o el valor mínimo de la `speed` en la tabla anterior: `r summary(cars)[1]`.
