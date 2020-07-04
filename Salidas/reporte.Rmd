@@ -1,7 +1,14 @@
 ---
 title: "Reporte investigación"
 author: "Ignacio Becker Bozo"
+<<<<<<< HEAD
 date: "`r format(Sys.time(), '%d %B, %Y')`"
+=======
+date: "7/2/2020"
+<<<<<<< HEAD
+>>>>>>> e604f0459b5dd54bf593d1fdacee246dfa874ee5
+=======
+>>>>>>> e604f0459b5dd54bf593d1fdacee246dfa874ee5
 output: pdf_document
 bibliography: biblio.bib
 ---
@@ -39,8 +46,9 @@ Caracterizar la temporalidad contractual de la población joven en Chile en base
 
 A nivel de descriptivos preliminares, las variables a considerar son las siguientes:
 
-```{r resumen var}
-dfSummary(ene, style = "grid")
+```{r resumen var, echo=FALSE}
+dfSummary(ene, style = "multiline", plain.ascii = TRUE,
+          varnumbers = FALSE, valid.col = FALSE)
 ```
 
 # Referencias

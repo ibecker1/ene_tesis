@@ -207,11 +207,12 @@ ggplotly(g1) #interactivo
 
 # ---- Varios no revisar ----
 # Guardar en github
-saveRDS(proc_ene, "/cloud/project/Data/IntermediateData/proc_ene.rds")
+saveRDS(ene, "/cloud/project/Datos/IntermediateData/proc_ene.rds")
 
 # Para abrir
 ene <- readRDS(file = "/cloud/project/Datos/IntermediateData/proc_ene.rds")
 
+ene <- 
 # Stock trabajadorxs
 
 # Stock
