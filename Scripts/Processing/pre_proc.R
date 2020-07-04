@@ -130,12 +130,11 @@ ene$cine <- as.numeric(ene$cine)
 
 #Especificar paquete desde el cual queremos ejecutar la función 'recode' 
 #para poder recodificar según tramos
-ene <- mutate(ene, cine = car::recode(ene$cine, "1 = 1; 2:5 = 2; 
-                                         6 = 3; 7:9 = 4; else = NA"))
+ene <- mutate(ene, cine = car::recode(ene$cine, "1:5 = 1; 6 = 2; 7:9 = 3; else = NA"))
 table(ene$cine)
 
 #Convertir a factor para poner etiquetas
-ene$cine <- factor(ene$cine, labels= c("Sin estudios", "Secundaria e inferior", "Técnica", "Universitaria o superior"))
+ene$cine <- factor(ene$cine, labels= c("Secundaria e inferior", "Técnica", "Universitaria o superior"))
 table(ene$cine)
 
 # Para comprobar
@@ -211,7 +210,7 @@ ggplotly(g1) #interactivo
 saveRDS(proc_ene, "/cloud/project/Data/IntermediateData/proc_ene.rds")
 
 # Para abrir
-ene <- readRDS(proc_ene, file = "/cloud/project/Data/IntermediateData/proc_ene.rds")
+ene <- readRDS(file = "/cloud/project/Datos/IntermediateData/proc_ene.rds")
 
 # Stock trabajadorxs
 
