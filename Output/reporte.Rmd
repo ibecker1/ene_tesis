@@ -1,0 +1,75 @@
+---
+title: "Reporte investigación"
+author: "Ignacio Becker Bozo"
+date: "2/7/2020"
+output: pdf_document
+bibliography: biblio.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(summarytools)
+ene <- readRDS(file = "/cloud/project/Data/InputData/ene.rds")
+
+```
+
+
+## Introducción
+
+En base a las constantes problemáticas de inserción laboral juvenil en las últimas décadas [@cepaloij_juventud_2004; @cepaloit_employment_2017}], además de una subutilización de las fuentes de datos disponibles para medir sus condiciones, el presente proyecto busca aportar en una cuantificación de este fenómeno, mediante el uso de la Encuesta Nacional de Empleo del Instituto Nacional de Estadísticas.
+
+Los procesos que reestructuraron la organización del empleo a mediados de siglo XX, relacionados a los mecanismos de flexibilización de los mercados laborales, junto a la precarización de la fuerza de trabajo, han orquestado novedosos mecanismos de empleo y contratación, basados en los contratos temporales, las jornadas parciales, la tercerización productiva -como la subcontratación-, entre otros dispositivos propios del empleo atípico [@neffa_informalidad_2008; @stecher_trabajo_2019], que han debilitado aún más el empleo, impidiendo la generación de vínculos estables, protegidos y seguros para la integración social [@kaztman_seducidos_2001].
+
+Este desarrollo, sin embargo, no afecta a todos los grupos sociales en la misma medida: el aumento de la flexibilidad supone una desregulación dirigida, alterando y reformando en primera instancia los márgenes del empleo [@atkinson_manpower_1984], para luego ampliarse al resto de la fuerza de trabajo [@oreilly_five_2015]. Los mismos autores señalan que este proceso ha promovido la segmentación del mercado laboral, llevándose la carga flexibilizadora aquellos empleados que son considerados atípicos, o al margen del empleo formal. Varios autores dan cuenta cómo la población joven es aquella que sufre estas condiciones en mayor medida [@furlong_labour_1990; @jacinto_estrategias_2006; @oreilly_five_2015; @weller_insercion_2007)], en el denominado mercado laboral juvenil (o _Youth Labor Market_ [YLM], por su origen británico), el cual discute si estas condiciones son propias de la juventud, o se debe a situaciones de paso hacia el ingreso al mercado laboral [@ashton_restructuring_1990].
+
+# Objetivos proyecto
+
+En este sentido, y dado el carácter acotado del presente proyecto (el cual consta de solo un semestre), es que en el presente escrito se propone los siguientes objetivos, entendiendo los procesos de reestructuración y flexibilización de la fuerza de trabajo juvenil en los últimos años.
+
+## Objetivo general
+
+Caracterizar la temporalidad contractual de la población joven en Chile en base al trimestre marzo-abril-mayo 2019 de la Encuesta Nacional de Empleo.
+
+## Objetivos específicos
+
+* Describir la temporalidad contractual de las y los jóvenes asalariados en Chile, según variables sociodemográficas (como sexo, edad, región de residencia) y educativa.
+* Identificar la temporalidad de la ocupación según las ramas de empleo de la población joven ocupada.
+* Caracterizar la posesión de contrato por variables sociodemográficas.
+
+# Resultados
+
+A nivel de descriptivos preliminares, las variables a considerar son las siguientes:
+
+```{r resumen var}
+dfSummary(ene, style = "grid")
+```
+
+Si queremos una tabla con mejor formato:
+
+```{r}
+knitr::kable(summary(cars))
+```
+
+Puedes incorporar dentro del texto un resultado de una función de R, como `r 1 + 1` o el valor mínimo de la `speed` en la tabla anterior: `r summary(cars)[1]`.
+
+Existen distintas formas de imprimir tablas. Es importante distinguir si queremos un formato final en PDF o HTML. En cualquiera de los dos casos, recomiendo revisar el paquete `kableExtra` y los ejemplos que tiene en [HTML](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html) y [PDF](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf).
+
+
+También se pueden crear directamente **gráficos**, e.g:
+
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Al usar `echo = FALSE` en el trozo de código evitamos que se imprima el código de R y solo vemos el resultado, en cambio:
+
+```{r pressure2, echo=TRUE}
+plot(pressure)
+```
+
+Nos muestra el código y el resultado.
+
+Las referencias por _default_ quedan al final, así que solo tenemos que dejar el título del apartado
+
+# Referencias
