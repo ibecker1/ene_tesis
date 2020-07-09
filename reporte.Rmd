@@ -1,15 +1,12 @@
 ---
 title: "Reporte investigación"
 author: "Ignacio Becker Bozo"
-<<<<<<< HEAD
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-=======
-date: "7/2/2020"
-<<<<<<< HEAD
->>>>>>> e604f0459b5dd54bf593d1fdacee246dfa874ee5
-=======
->>>>>>> e604f0459b5dd54bf593d1fdacee246dfa874ee5
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+csl: apa.csl
 bibliography: biblio.bib
 ---
 
@@ -17,6 +14,8 @@ bibliography: biblio.bib
 knitr::opts_chunk$set(echo = TRUE)
 ene <- readRDS(file = "/cloud/project/Datos/IntermediateData/proc_ene.rds")
 library(summarytools)
+library(tidyverse)
+library(stargazer)
 ```
 
 
@@ -46,9 +45,44 @@ Caracterizar la temporalidad contractual de la población joven en Chile en base
 
 A nivel de descriptivos preliminares, las variables a considerar son las siguientes:
 
-```{r resumen var, echo=FALSE}
-dfSummary(ene, style = "multiline", plain.ascii = TRUE,
-          varnumbers = FALSE, valid.col = FALSE)
+```{r res var, echo=FALSE, paged.print=TRUE}
+stargazer(ene, title = "Descriptivos generales")
+
 ```
+
+## Por tipo de contrato
+
+```{r tablas, echo=FALSE}
+## Por sexo, columna
+ctable(ene$t_con, ene$sexo, prop = "c",
+       weights = ene$fact_cal, rows=factor(ene$p_con==1), style = 'rmarkdown')
+
+## Por tramo etario
+ctable(ene$t_con, ene$tramo_etario, prop = "c",
+       weights = ene$fact_cal, rows=factor(ene$p_con==1))
+
+## Por rama
+ctable(ene$t_con, ene$rama, prop = "c",
+       weights = ene$fact_cal, rows=factor(ene$p_con==1))
+```
+
+
+```{r graf 1, echo=FALSE}
+g1 <- ene %>%
+  ggplot()+
+        geom_bar(mapping = aes(x=p_con, y = (..count..)/sum(..count..), fill = factor(sexo)),
+                 position = "dodge") + # Probar sacando "position"
+        scale_y_continuous(labels=scales::percent) +
+        xlab("Posesión contrato") +
+        scale_fill_manual("Género",
+                          values = c("#E41A1C", "#377EB8"),
+                          labels = c("Hombre", "Mujer")) +
+        ylab("Porcentaje")+
+        facet_wrap(~macroz, scale="free_y")
+
+g1
+
+```
+
 
 # Referencias
