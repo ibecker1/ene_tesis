@@ -45,14 +45,14 @@ Caracterizar la temporalidad contractual de la población joven en Chile en base
 
 A nivel de descriptivos preliminares, las variables a considerar son las siguientes:
 
-```{r res var, echo=FALSE, paged.print=TRUE}
+```{r res var, echo=FALSE, paged.print=TRUE,results='asis'}
 stargazer(ene, title = "Descriptivos generales")
 
 ```
 
 ## Por tipo de contrato
 
-```{r tablas, echo=FALSE}
+```{r tablas, echo=FALSE,results='asis'}
 ## Por sexo, columna
 ctable(ene$t_con, ene$sexo, prop = "c",
        weights = ene$fact_cal, rows=factor(ene$p_con==1), style = 'rmarkdown')
@@ -84,5 +84,5 @@ g1
 
 ```
 
-
+\newpage
 # Referencias
