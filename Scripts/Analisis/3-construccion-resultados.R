@@ -1,35 +1,17 @@
-# Programar los resultados ----
+# Carga base de datos
+saveRDS(ene, file = "/cloud/project/Datos/DatosIntermedios/ene-editada.rds")
+
+# ---- 1. ANÁLISIS ESTADÍSTICO DESCRIPTIVO ----
 ### Posesión de contrato
 # Por género
-ctable(ene$p_con, ene$sexo, prop = "c",
+tabla1.1 <- ctable(ene$p_con, ene$sexo, prop = "c",
        weights = ene$fact_cal)
 
 # Por macrozona
-ctable(ene$p_con, ene$macroz, prop = "c",
+tabla1.2 <- ctable(ene$p_con, ene$macroz, prop = "c",
        weights = ene$fact_cal)
 
-# Por tramo etario
-ctable(ene$p_con, ene$tramo_etario, prop = "c",
-       weights = ene$fact_cal)
-
-# Por nivel educativo
-ctable(ene$p_con, ene$cine, prop = "c",
-       weights = ene$fact_cal)
-
-### TIPO DE CONTRATO, entre quienes tienen
-## Por sexo, columna
-ctable(ene$t_con, ene$sexo, prop = "c",
-       weights = ene$fact_cal, rows=factor(ene$p_con==1))
-
-## Por tramo etario
-ctable(ene$t_con, ene$tramo_etario, prop = "c",
-       weights = ene$fact_cal, rows=factor(ene$p_con==1))
-
-## Por rama
-ctable(ene$t_con, ene$rama, prop = "c",
-       weights = ene$fact_cal, rows=factor(ene$p_con==1))
-
-
+# Grafico 1: 
 g1 <- ene %>%
   ggplot()+
   geom_bar(mapping = aes(x=p_con, y = (..count..)/sum(..count..), fill = factor(sexo)),
@@ -40,4 +22,48 @@ g1 <- ene %>%
                     values = c("#E41A1C", "#377EB8"),
                     labels = c("Hombre", "Mujer")) +
   ylab("Porcentaje")+
+  facet_wrap(~macroz, scale="free_y")
+
+# Por tramo etario
+tabla1.3 <- ctable(ene$p_con, ene$tramo_etario, prop = "c",
+       weights = ene$fact_cal)
+
+# Por nivel educativo
+tabla1.4 <- ctable(ene$p_con, ene$cine, prop = "c",
+       weights = ene$fact_cal)
+
+### TIPO DE CONTRATO, entre quienes tienen
+## Por sexo, columna
+tabla2.1 <- ctable(ene$t_con, ene$sexo, prop = "c",
+       weights = ene$fact_cal, rows=factor(ene$p_con==1))
+
+## Por tramo etario
+tabla2.2 <- ctable(ene$t_con, ene$tramo_etario, prop = "c",
+       weights = ene$fact_cal, rows=factor(ene$p_con==1))
+
+## Por rama
+tabla2.3 <- ctable(ene$t_con, ene$rama, prop = "c",
+       weights = ene$fact_cal, rows=factor(ene$p_con==1))
+
+# Grafico 2: 
+g2 <- ene %>%
+  ggplot()+
+  geom_bar(mapping = aes(x=t_con, y = (..count..)/sum(..count..), fill = factor(sexo)),
+           position = "dodge") + # Probar sacando "position"
+  scale_y_continuous(labels=scales::percent) +
+  xlab("Tipo de contrato") +
+  scale_fill_manual("Género",
+                    values = c("#E41A1C", "#377EB8"),
+                    labels = c("Hombre", "Mujer")) +
+  ylab("Porcentaje")+
   facet_wrap(~rama, scale="free_y")
+
+# ---- 3. COMPILAR RESULTADOS EN UN SÓLO OBJETO (LISTA) Y GUARDAR COMO ARCHIVO ----
+
+resultados <- list(tabla1.1, tabla1.2, tabla1.3, g1,tabla1.4,
+                   tabla2.1, tabla2.2, tabla2.3,g2)
+
+saveRDS(resultados, file = "/cloud/project/Datos/DatosAnalisis/resultados-reporte.rds")
+
+# Limpiar entorno de trabajo
+rm(list=ls())

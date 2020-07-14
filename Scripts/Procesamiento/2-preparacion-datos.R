@@ -1,3 +1,6 @@
+ene <- readRDS(ene, "/cloud/project/Datos/DatosIntermedios/ene-filtro.rds")
+
+
 # Recodificar variables ----
 ## Rama
 # Recodificar en tres sectores por rangos: Primario, Secundario, Terciario
@@ -43,3 +46,9 @@ table(ene$cine)
 
 # Para comprobar
 dfSummary(ene, style = "grid")
+
+# Guardar base en formato RDS, con bases listas para análisis
+saveRDS(ene, file = "/cloud/project/Datos/DatosIntermedios/ene-editada.rds")
+
+# Limpiar entorno de trabajo
+rm(list=ls())

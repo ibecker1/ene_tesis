@@ -1,13 +1,22 @@
 #######AGREGAR IF PARA BBDD
 ### Y PACKETES SEGÚN CMC
 
+if (!require("pacman")) {
+  install.packages("pacman")
+}
+pacman::p_load(haven,
+               dplyr,
+               car,
+               summarytools,
+               ggplot2)
+
 # Cargar base de datos ----
 # abre bbdd en .dta, trimestre MAM 2019
 ene0 <- read_dta('http://www.ine.cl/docs/default-source/ocupacion-y-desocupacion/bbdd/2019/formato-stata/ene-2019-04.dta?sfvrsn=599190e8_6&download=true', encoding = NULL, col_select = NULL, skip = 0,
                  n_max = Inf, .name_repair = "unique")
 
-# Guardar en github
-#saveRDS(ene, "/cloud/project/Data/InputData/ene.rds")
+saveRDS(ene0, "/cloud/project/Datos/DatosBrutos/ene-mam19.rds")
+
 
 # Seleccionar variables ----
 # seleccionar variables de interés, en base a INE
@@ -34,3 +43,9 @@ ene <- filter(ene, (edad>=15&edad<=29)&(cae>=1&cae<=7))
 
 # Se eliminan NA para facilitar análisis
 ene <-na.omit(ene)
+
+# Se guarda df filtrada
+saveRDS(ene, "/cloud/project/Datos/DatosIntermedios/ene-filtro.rds")
+
+# Limpiar entorno de trabajo
+rm(list=ls())

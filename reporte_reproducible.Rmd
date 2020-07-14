@@ -31,9 +31,9 @@ Caracterizar la temporalidad contractual de la población joven en Chile en base
 
 ## Objetivos específicos
 
+* Caracterizar la posesión de contrato por variables sociodemográficas.
 * Describir la temporalidad contractual de las y los jóvenes asalariados en Chile, según variables sociodemográficas (como sexo, edad, región de residencia) y educativa.
 * Identificar la temporalidad de la ocupación según las ramas de empleo de la población joven ocupada.
-* Caracterizar la posesión de contrato por variables sociodemográficas.
 
 # Metodología
 
