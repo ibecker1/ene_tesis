@@ -1,17 +1,29 @@
 # Instalación de paquetes
 ## Instalar paquetes para el espacio de trabajo
 if (!require("pacman")) {
-    install.packages("pacman")
+  install.packages("pacman")
 }
-pacman::p_load(tidyverse, # atajo para instalar ggplot2, dplyr, 
-               rmarkdown,
-               knitr,
-               kableExtra)
+pacman::p_load(haven,
+               dplyr,
+               car,
+               summarytools,
+               ggplot2)
 
-## Instalar paquete pinochet con datos
-install.packages("pinochet")
+# Ejecuta código 1: lectura base datos
+# Expulsa archivo de datos para editar
+source("Scripts/Procesamiento/1-lectura-base.R")
 
-## Guardar datos en formato R
-library(pinochet)
-data("pinochet") # cargar datos Pinochet
-saveRDS(pinochet, "Data/InputData/pinochet.Rds") # guardar en repo
+# Ejecuta código 2: preparación de datos
+# Carga datos para editar, expulsa archivo de datos editados
+source("Scripts/Procesamiento/2-preparacion-datos.R")
+
+# Ejecuta código 3: construcción de resultados
+# Carga datos editados, expulsa lista de resultados como archivo
+source("Scripts/Analisis/3-construccion-resultados.R")
+
+# Ejecuta código 4: construcción de reporte reproducible
+# En base a lista de resultados, crea archivo de reporte en PDF
+rmarkdown::render('reporte_reproducible.Rmd')
+
+# Limpiar entorno de trabajo
+rm(list=ls())
