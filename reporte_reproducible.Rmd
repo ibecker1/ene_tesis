@@ -1,5 +1,6 @@
 ---
-title: "Reporte investigación"
+title: "Temporalidad contractual de jóvenes en Chile"
+subtitle: "Reporte investigación final"
 author: "Ignacio Becker Bozo"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 csl: apa.csl
@@ -8,10 +9,16 @@ bibliography: biblio.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
+knitr::opts_chunk$set(echo = FALSE)
+# Esta segunda línea se agrega para indicar que la carpeta desde donde debe partir buscando archivos es la del proyecto R
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(dplyr)
 ```
 
+```{r cargar-datos}
+# Carga archivo (lista) con los resultados
+resultados <- readRDS("/cloud/project/Datos/DatosAnalisis/resultados-reporte.rds")
+```
 
 ## Introducción
 
@@ -22,7 +29,6 @@ Los procesos que reestructuraron la organización del empleo a mediados de siglo
 Este desarrollo, sin embargo, no afecta a todos los grupos sociales en la misma medida: el aumento de la flexibilidad supone una desregulación dirigida, alterando y reformando en primera instancia los márgenes del empleo [@atkinson_manpower_1984], para luego ampliarse al resto de la fuerza de trabajo [@oreilly_five_2015]. Los mismos autores señalan que este proceso ha promovido la segmentación del mercado laboral, llevándose la carga flexibilizadora aquellos empleados que son considerados atípicos, o al margen del empleo formal. Varios autores dan cuenta cómo la población joven es aquella que sufre estas condiciones en mayor medida [@furlong_labour_1990; @jacinto_estrategias_2006; @oreilly_five_2015; @weller_insercion_2007], en el denominado mercado laboral juvenil (o _Youth Labor Market_ [YLM], por su origen británico), el cual discute si estas condiciones son propias de la juventud, o se debe a situaciones de paso hacia el ingreso al mercado laboral [@ashton_restructuring_1990].
 
 # Objetivos proyecto
-
 En este sentido, y dado el carácter acotado del presente proyecto (el cual consta de solo un semestre), es que en el presente escrito se propone los siguientes objetivos, entendiendo los procesos de reestructuración y flexibilización de la fuerza de trabajo juvenil en los últimos años.
 
 ## Objetivo general
@@ -31,56 +37,62 @@ Caracterizar la temporalidad contractual de la población joven en Chile en base
 
 ## Objetivos específicos
 
-* Caracterizar la posesión de contrato por variables sociodemográficas.
+* Caracterizar la posesión de contrato de las y los jóvenes asalariados en Chile, por variables sociodemográficas.
 * Describir la temporalidad contractual de las y los jóvenes asalariados en Chile, según variables sociodemográficas (como sexo, edad, región de residencia) y educativa.
 * Identificar la temporalidad de la ocupación según las ramas de empleo de la población joven ocupada.
 
 # Metodología
 
+Debido a las características propias del ejercicio, este responde a una metodología cuantitativa, con un enfoque descriptivo. Para ello, utilizamos fuentes de segundo orden, en específico, la Encuesta Nacional de Empleo (ENE) desarrollada por el Instituto Nacional de Estadísticas (INE).
 
 
 # Resultados
 
 A nivel de descriptivos preliminares, las variables a considerar son las siguientes:
 
-```{r res var, echo=FALSE, paged.print=TRUE,results='asis'}
-stargazer(ene, title = "Descriptivos generales")
-
-```
-
 ## Por tipo de contrato
 
-```{r tablas, echo=FALSE,results='asis'}
-## Por sexo, columna
-ctable(ene$t_con, ene$sexo, prop = "c",
-       weights = ene$fact_cal, rows=factor(ene$p_con==1), style = 'rmarkdown')
+Con la función `knitr::kable(objeto_a_imprimir)`, podemos imprimir una tabla en formato *R Markdown*.
 
-## Por tramo etario
-ctable(ene$t_con, ene$tramo_etario, prop = "c",
-       weights = ene$fact_cal, rows=factor(ene$p_con==1))
+Para ello hay que tener clara la posición de los resultados en el archivo tipo "lista" que se creó en el tercer código (*3-construccion-resultados.R*).
 
-## Por rama
-ctable(ene$t_con, ene$rama, prop = "c",
-       weights = ene$fact_cal, rows=factor(ene$p_con==1))
+```{r tabla1}
+knitr::kable(resultados[[1]], digits = 1, caption = "Posesión de contrato por sexo")
 ```
 
+Luego se imprime el resultado 2 creado en el tercer código, y así sucesivamente.
+ (*3-construccion-resultados.R*).
 
-```{r graf 1, echo=FALSE}
-g1 <- ene %>%
-  ggplot()+
-        geom_bar(mapping = aes(x=p_con, y = (..count..)/sum(..count..), fill = factor(sexo)),
-                 position = "dodge") + # Probar sacando "position"
-        scale_y_continuous(labels=scales::percent) +
-        xlab("Posesión contrato") +
-        scale_fill_manual("Género",
-                          values = c("#E41A1C", "#377EB8"),
-                          labels = c("Hombre", "Mujer")) +
-        ylab("Porcentaje")+
-        facet_wrap(~macroz, scale="free_y")
-
-g1
-
+```{r tabla2}
+knitr::kable(resultados[[2]], digits = 1, caption = "Posesión de contrato por macrozona")
 ```
+
+asd
+
+```{r tabla3}
+knitr::kable(resultados[[3]], digits = 1, caption = "Posesión de contrato por tramo etario",
+             format = "latex")
+```
+
+\newpage
+
+# Gráficos
+
+La lógica para incorporar los gráficos es la misma.
+```{r grafico1, message=FALSE, warning=FALSE, fig.align='center', out.width='80%'}
+resultados[[4]]
+```
+sadf
+
+```{r grafico2, message=FALSE, warning=FALSE, fig.align='center', out.width='80%'}
+resultados[[9]]
+```
+
+También podemos agregar el mismo gráfico, pero directamente desde el archivo de imagen desde el directorio `Output`
+
+![](/cloud/project/Salidas/Figura1.png)
+![](/cloud/project/Salidas/Figura2.png)
+
 
 \newpage
 # Referencias

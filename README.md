@@ -1,12 +1,12 @@
-# Bienvenidxs!
+# Bienvenidxs! *Léeme*
 
 Este repositorio constituye la base del proyecto para el análisis de datos en el marco del curso _Herramientas para la Investigación Social Cuantitativa: Ciencia Abierta y Software Libre_ del Magíster en Ciencias Sociales de la Universidad de Chile.
 
-Acá iré subiendo material de manera continua para que puedas replicar y reproducir la investigación que estoy realizando.
+En la carpeta _Scripts_ podrás encontrar un archivo llamado `master_script`. Con él podrás replicar y reproducir todo el informe de resultados!
 
 En base a las constantes problemáticas de inserción laboral juvenil en las últimas décadas, además de una subutilización de las fuentes de datos disponibles para medir sus condiciones, el presente proyecto busca aportar en una cuantificación de este fenómeno, mediante el uso de la Encuesta Nacional de Empleo del Instituto Nacional de Estadísticas.
 
-# Objetivos _actualizados_ proyecto
+# Objetivos proyecto
 
 ## Objetivo general
 
@@ -24,7 +24,6 @@ Dada la magnitud del fenómeno, y ya que solo cuento con un semestre para su tra
 
 Variables de empleo: 
 + Situación de empleo a nivel desagregado: permite filtrar la base de datos para trabajar solo con quienes están ocupadxs.
-+ Rama de actividad: permite conocer el área de actividad económica donde está empleada la persona (r_p_rev4cl_caenes).
 + Posesión de contrato: permite filtrar por quienes poseen o no contrato (b8).
 + Temporalidad contractual: variable categórica que nos muestra la duración de este contrato (definido o indefinido) (b9).
 + Factor de expansión: variable que permite expandir resultados a nivel poblacional, bajo diseño muestral complejo (fact_cal).
@@ -37,10 +36,10 @@ Variables sociodemográficas:
 
 # Estructura de datos
 
-En base a lo que señalaba en un comienzo, la idea de este proyecto es que sea replicable y reproducible para quien desee investigar sobre inserción laboral juvenil. Así, se basa en la estructura del [Protocolo TIER](https://www.projecttier.org/tier-protocol/demo-project/), conteniendo carpetas donde subiré:
-+ Data (Datos): contiene las bases de datos ocupadas en las diversas etapas de la investigación (Análisis, Iniciales e intermedias).
-+ Output (Resultados): acá agregaré gráficos y tablas (ojalá mapas).
-+ Script: son las hojas de trabajo para los procesamientos en R, diferenciadas según cada etapa.
+En base a lo que señalaba en un comienzo, la idea de este proyecto es que lo puedas replicar y reproducir para quien desee investigar sobre inserción laboral juvenil. Así, se basa en la estructura del [Protocolo TIER](https://www.projecttier.org/tier-protocol/demo-project/), conteniendo carpetas donde encontrarás:
++ Datos: contiene las bases de datos ocupadas en las diversas etapas de la investigación (Análisis, Iniciales e intermedias).
++ Resultados: acá agregué los gráficos y tablas.
++ Script: son las hojas de trabajo para los procesamientos en R, diferenciadas según cada etapa. En la carpeta de Procesamiento encontrarás las selección de base y recodificaciones varias. En el de Análisis encontrarás los relativos a la producción de resultados. Con el `master_script` de la carpeta inicial podrás replicar todo el `reporte_reproducible.pdf` con unos pocos _clicks_.
 
 # Autor
 

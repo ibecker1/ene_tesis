@@ -1,5 +1,5 @@
 # Carga base de datos
-saveRDS(ene, file = "/cloud/project/Datos/DatosIntermedios/ene-editada.rds")
+ene <- readRDS(file="/cloud/project/Datos/DatosIntermedios/ene-editada.rds")
 
 # ---- 1. ANÁLISIS ESTADÍSTICO DESCRIPTIVO ----
 ### Posesión de contrato
@@ -14,16 +14,16 @@ tabla1.2 <- ctable(ene$p_con, ene$macroz, prop = "c",
 # Grafico 1: 
 g1 <- ene %>%
   ggplot()+
-  geom_bar(mapping = aes(x=p_con, y = (..count..)/sum(..count..), fill = factor(sexo)),
+  geom_bar(mapping = aes(x=p_con, y = (..count..)/sum(..count..), fill = factor(sexo), weight=fact_cal),
            position = "dodge") + # Probar sacando "position"
-  scale_y_continuous(labels=scales::percent) +
+  scale_y_continuous(labels=scales::percent, limits = c(0,0.3)) +
   xlab("Posesión contrato") +
   scale_fill_manual("Género",
                     values = c("#E41A1C", "#377EB8"),
                     labels = c("Hombre", "Mujer")) +
   ylab("Porcentaje")+
-  facet_wrap(~macroz, scale="free_y")
-
+  facet_wrap(~macroz)
+g1
 # Por tramo etario
 tabla1.3 <- ctable(ene$p_con, ene$tramo_etario, prop = "c",
        weights = ene$fact_cal)
@@ -57,6 +57,12 @@ g2 <- ene %>%
                     labels = c("Hombre", "Mujer")) +
   ylab("Porcentaje")+
   facet_wrap(~rama, scale="free_y")
+
+# Imprimir figuras
+ggsave(g1, filename = "/cloud/project/Salidas/Figura1.png",
+       dpi = 350, width = 6, height = 4)
+ggsave(g2, filename = "/cloud/project/Salidas/Figura2.png",
+       dpi = 350, width = 6, height = 4)
 
 # ---- 3. COMPILAR RESULTADOS EN UN SÓLO OBJETO (LISTA) Y GUARDAR COMO ARCHIVO ----
 
