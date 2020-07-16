@@ -12,10 +12,7 @@ pacman::p_load(haven,
 
 # Cargar base de datos ----
 # abre bbdd en .dta, trimestre MAM 2019
-ene0 <- read_dta('http://www.ine.cl/docs/default-source/ocupacion-y-desocupacion/bbdd/2019/formato-stata/ene-2019-04.dta?sfvrsn=599190e8_6&download=true', encoding = NULL, col_select = NULL, skip = 0,
-                 n_max = Inf, .name_repair = "unique")
-
-saveRDS(ene0, "/cloud/project/Datos/DatosBrutos/ene-mam19.rds")
+ene0 <- readRDS(file= "/cloud/project/Datos/DatosBrutos/ene-mam19.rds")
 
 
 # Seleccionar variables ----

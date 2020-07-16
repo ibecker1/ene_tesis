@@ -1,5 +1,5 @@
 # Carga base de datos
-saveRDS(ene, file = "/cloud/project/Datos/DatosIntermedios/ene-editada.rds")
+ene <- readRDS(file="/cloud/project/Datos/DatosIntermedios/ene-editada.rds")
 
 # ---- 1. ANÁLISIS ESTADÍSTICO DESCRIPTIVO ----
 ### Posesión de contrato
@@ -57,6 +57,12 @@ g2 <- ene %>%
                     labels = c("Hombre", "Mujer")) +
   ylab("Porcentaje")+
   facet_wrap(~rama, scale="free_y")
+
+# Imprimir figuras
+ggsave(g1, filename = "/cloud/project/Salidas/Figura1.png",
+       dpi = 350, width = 6, height = 4)
+ggsave(g2, filename = "/cloud/project/Salidas/Figura2.png",
+       dpi = 350, width = 6, height = 4)
 
 # ---- 3. COMPILAR RESULTADOS EN UN SÓLO OBJETO (LISTA) Y GUARDAR COMO ARCHIVO ----
 

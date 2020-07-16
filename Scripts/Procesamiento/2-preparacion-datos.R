@@ -1,5 +1,5 @@
-ene <- readRDS(ene, "/cloud/project/Datos/DatosIntermedios/ene-filtro.rds")
-
+# Carga bbdd filtrada para jóvenes asalariadxs
+ene <- readRDS(file="/cloud/project/Datos/DatosIntermedios/ene-filtro.rds")
 
 # Recodificar variables ----
 ## Rama
