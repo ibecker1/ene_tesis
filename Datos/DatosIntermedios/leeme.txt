@@ -1,4 +1,8 @@
-Esta carpeta contiene la base de datos pre-procesada de la ENE trimestre MAM de 2019.
+Esta carpeta contiene la base de datos pre-procesada de la ENE trimestre MAM de 2019:
+
+- En "ene-filtro.rds" encontrarás la base filtrada para jóvenes ocupadxs.
+- En "ene-editada.rds" encontrarás las variables recodificadas para procesamiento.
+
 Solo contiene las variables: 
-    - empleo (cae_especifico, activ, r_p_rev4cl_caenes, ocup_form)
-    - sociodemográficas (sexo, tramo_edad, region, cine)
+    - empleo (rama, t_con, p_con)
+    - sociodemográficas (sexo, tramo_edad, macroz, cine)

@@ -1,7 +1,7 @@
 # Carga base de datos
 ene <- readRDS(file="/cloud/project/Datos/DatosIntermedios/ene-editada.rds")
 
-### Debido a errores de formato cuando hago render en rmd con "ctable", los agregaré directamente en el escrito Rmd. 
+### Debido a errores de formato cuando hago render en rmd con "ctable", los agregaré directamente en el escrito "reporte_reproducible.Rmd". 
 ### Los cálculos serán los siguientes:
 # 1.1 posesión contrato por sexo
 # 1.2 posesión contrato por tramo etario
