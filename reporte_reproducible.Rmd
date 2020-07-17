@@ -98,7 +98,8 @@ ctable(ene$p_con, ene$cine, prop = "c",
 ```
 \newpage
 
-Por último, al comparar la posesión de contrato por macrozona y género, podemos dar cuenta de que hay una concentración de contratados en la zona central, debido a alta cantidad de ocupados jóvenes en ella. Al comparar por sexo, se da cuenta de que la posesión de contrato es proporcionalmente más alta en hombres jóvenes que en mujeres, lo que se relaciona a la menor calidad de empleo femenino. 
+Por último, al comparar la posesión de contrato por macrozona y género, podemos dar cuenta de que hay una concentración de contratados en la zona central, debido a alta cantidad de ocupados jóvenes en ella. Al comparar por sexo, se da cuenta de que la posesión de contrato es proporcionalmente más alta en hombres jóvenes que en mujeres, lo que se relaciona a la menor calidad de mujeres empleadas. 
+
 
 ```{r grafico1, message=FALSE, warning=FALSE, fig.align='center', out.width='80%'}
 resultados[[1]]
@@ -118,6 +119,9 @@ ctable(ene$t_con, ene$sexo, prop = "c",
 Por último, sobre el tipo de contrato por rama y sexo, se puede apreciar que los datos están directamente relacionados con los sectores de inserción de la población joven. Esto se aprecia mediante las barras: una barra más alta da cuenta de un _stock_ mayor de ocupados en cada sector. En específico, para las mujeres jóvenes, los sectores donde mayormente están insertas son el terciario (por ejemplo de servicios como comercio, educación, salud), relativo a la feminización de esos espacios [@carrillo_mercado_2018]. Por su parte, para los hombres jóvenes, se aprecia, además de una alta proporción de contratados en sector terciario, también mayor presencia en el sector secundario, como la industria o suministro de agua o electricidad. 
 
 A nivel del tipo de contrato por sector, se aprecia que tanto el sector secundario como terciario poseen una mayor proporción de contratos indefinidos que definidos, situación contraria a lo que ocurre en el sector primario, donde hay una mayor proporción de contratos a plazo fijo. Esto último dado por la propia naturaleza del sector caracterizado por empleos temporales o estacionales.
+
+
+
 
 ```{r grafico2, message=FALSE, warning=FALSE, fig.align='center', out.width='80%'}
 resultados[[2]]
