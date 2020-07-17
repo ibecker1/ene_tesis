@@ -42,12 +42,11 @@ ene$t_con <- factor(ene$t_con, labels= c("Definido", "Indefinido"))
 ene$cine <- as.numeric(ene$cine)
 ene <- mutate(ene, cine = car::recode(ene$cine, "1:5 = 1; 6 = 2; 7:9 = 3; else = NA"))
 ene$cine <- factor(ene$cine, labels= c("Secundaria e inferior", "Técnica", "Universitaria o superior"))
-table(ene$cine)
 
-# Para comprobar
-dfSummary(ene, style = "grid")
+# Elimina variables que no se utilizarán
+ene <- ene[ -c(1,4:5) ]
 
-# Cambia nombre variables
+# Cambia nombre variables para que publicación se vea mejor en tabla resumen
 ene$sexo <- set_label(x = ene$sexo,label = "Sexo")
 ene$rama <- set_label(x = ene$rama,label = "Rama de actividad económica")
 ene$p_con <- set_label(x = ene$p_con,label = "Posesión contrato")

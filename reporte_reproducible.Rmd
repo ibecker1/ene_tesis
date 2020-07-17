@@ -69,7 +69,7 @@ Luego de revisar la metodología, organizaremos el apartado de resultados en dos
 A nivel de descriptivos preliminares, las variables a considerar y sus principales distribuciones muestrales son las siguientes:
 
 ```{r des var, results='asis', warning=FALSE}
-dfSummary(ene, plain.ascii= TRUE, headings = FALSE)
+dfSummary(ene, plain.ascii= TRUE, headings = FALSE, round.digits = 1)
 ```
 
 \newpage
@@ -108,14 +108,16 @@ resultados[[1]]
 
 ## Tipo de contrato
 
-En cuanto al tipo de contrato............
+En cuanto al tipo de contrato, entre aquellas personas jóvenes que declaran poseerlo, se da cuenta que a nivel general el 63% indica tener uno a tiempo indefinido, muentras que el 37% restante a plazo fijo. A nivel de sexos, la distribución es prácticamente idéntica: 64% para las mujeres jóvenes contratadas, mientras que un 63% para sus pares hombres.
 
 ```{r tabla4, results='asis'}
 ctable(ene$t_con, ene$sexo, prop = "c",
        weights = ene$fact_cal, rows=factor(ene$p_con==1), style = "rmarkdown", headings = FALSE)
 ```
 
-Por último sobre el tipo de contrato por rama y sexo, se puede apreciar una mayor proporción de .........
+Por último, sobre el tipo de contrato por rama y sexo, se puede apreciar que los datos están directamente relacionados con los sectores de inserción de la población joven. Esto se aprecia mediante las barras: una barra más alta da cuenta de un _stock_ mayor de ocupados en cada sector. En específico, para las mujeres jóvenes, los sectores donde mayormente están insertas son el terciario (por ejemplo de servicios como comercio, educación, salud), relativo a la feminización de esos espacios [@carrillo_mercado_2018]. Por su parte, para los hombres jóvenes, se aprecia, además de una alta proporción de contratados en sector terciario, también mayor presencia en el sector secundario, como la industria o suministro de agua o electricidad. 
+
+A nivel del tipo de contrato por sector, se aprecia que tanto el sector secundario como terciario poseen una mayor proporción de contratos indefinidos que definidos, situación contraria a lo que ocurre en el sector primario, donde hay una mayor proporción de contratos a plazo fijo. Esto último dado por la propia naturaleza del sector caracterizado por empleos temporales o estacionales.
 
 ```{r grafico2, message=FALSE, warning=FALSE, fig.align='center', out.width='80%'}
 resultados[[2]]
@@ -123,15 +125,15 @@ resultados[[2]]
 
 \newpage
 
-# Conclusiones
+# Discusión
 
 En el ejercicio precedente caracterizamos la temporalidad contractual de la población joven ocupada en Chile en base a diversas variables sociodemográficas como de empleo, mediante el uso de herramientas de _software_ libre en pos de la replicabilidad y reproductibilidad de este ejercicio.
 
-Entre sus principales conclusiones, podemos dar cuenta de que una mayor cantidad de hombres jóvenes que de mujeres poseen contrato de trabajo escrito. Por su parte, a medida que se aumenta el nivel educativo de la persona joven, también podemos ver que aumenta la proporción de personas contratadas, cuestión relevante a la hora de analizar los procesos que estructuran el mercado laboral juvenil. 
+Entre sus principales conclusiones, podemos dar cuenta de que una similar cantidad de hombres jóvenes que de mujeres poseen contrato de trabajo escrito. Por su parte, a medida que se aumenta el nivel educativo de la persona joven, también podemos ver que aumenta la proporción de personas contratadas, cuestión relevante a la hora de analizar los procesos que estructuran el mercado laboral juvenil. 
 
-Por su parte, en relación a la temporalidad del vínculo, como _proxy_ de flexibilidad laboral, pudimos apreciar que la población masculina nuevamente es quien accede en mayor medida a este tipo de contrato, dando cuenta de la brecha existente entre la calidad del empleo masculino en detrimento del femenino. A nivel regional, la macrozona centro es la que concentra la mayor cantidad de contratos a tiempo indefinido, reforzando la idea de que el centralismo del país también estructura las oportunidades de empleo a la acceden las y los jóvenes.
+En relación a la temporalidad del vínculo, como _proxy_ de flexibilidad laboral, pudimos apreciar que la población joven posee una proporción similar de contratos indefinidos, siendo prácticamente la misma entre ambos sexos.A nivel de rama, el sector secundario y terciario es donde hay una mayor proporción de contratos indefinidos, reforzando la idea de que sector agrícola está asociado a la temporalidad y estacionalidad del empleo.
 
-Por último, este ejercicio nos permite mostrar que la replicabilidad con fuentes de datos nacionales es factible, generando bastantes desafíos para su uso dentro de las y los científicos sociales del país.
+En suma, el presente estudio muestra ciertos patrones de empleo juvenil que es necesario profundizar, tanto en el uso de la variables, como en la comparación con, por ejemplo el mercado laboral adulto. Así, este ejercicio nos permite mostrar que la replicabilidad con fuentes de datos nacionales es factible, generando bastantes desafíos para su uso dentro de las y los científicos sociales del país.
 
 
 \newpage

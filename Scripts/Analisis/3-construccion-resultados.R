@@ -1,12 +1,21 @@
 # Carga base de datos
 ene <- readRDS(file="/cloud/project/Datos/DatosIntermedios/ene-editada.rds")
 
+### Debido a errores de formato cuando hago render en rmd con "ctable", los agregaré directamente en el escrito Rmd. 
+### Los cálculos serán los siguientes:
+# 1.1 posesión contrato por sexo
+# 1.2 posesión contrato por tramo etario
+# 1.3 posesión contrato por nivel educativo
+# 2.1 tipo contrato por sexo
+
+### Acá están los gráficos tanto por posesión de contrato (por sexo y macrozona) como del tipo de éste (también por sexo, y por rama). 
 # ---- 1. GRÁFICOS ----
 # Grafico 1: 
 g1 <- ene %>%
   ggplot()+
   geom_bar(mapping = aes(x=p_con, y = (..count..)/sum(..count..), fill = factor(sexo), weight=fact_cal),
-           position = "dodge") + 
+           position = "dodge") +
+  geom_text(y)+
   scale_y_continuous(labels=scales::percent, limits = c(0,0.3)) +
   xlab("Posesión contrato") +
   scale_fill_manual("Género",

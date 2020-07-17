@@ -1,5 +1,5 @@
-#######AGREGAR IF PARA BBDD
-### Y PACKETES SEGÚN CMC
+
+## Carga paquetes
 
 if (!require("pacman")) {
   install.packages("pacman")
@@ -11,13 +11,13 @@ pacman::p_load(haven,
                ggplot2)
 
 # Cargar base de datos ----
-# abre bbdd en .dta, trimestre MAM 2019
+# abre bbdd en .dta, trimestre MAM 2019 desde repositorio
 ene0 <- readRDS(file= "/cloud/project/Datos/DatosBrutos/ene-mam19.rds")
 
 
 # Seleccionar variables ----
 # seleccionar variables de interés, en base a INE
-## variables de empleo (cae_especifico, activ, r_p_rev4cl_caenes, ocup_form)
+## variables de empleo (cae_especifico, r_p_rev4cl_caenes, tipo y posesión contrato)
 ## variables sociodemográficas (sexo, tramo_edad, region, cine)
 ene <- select(ene0, cae = cae_especifico, #situación ocupacional desagregada
               rama = r_p_rev4cl_caenes, #rama de actividad
