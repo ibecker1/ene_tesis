@@ -46,7 +46,6 @@ table(ene$cine)
 
 # Para comprobar
 dfSummary(ene, style = "grid")
-ene <- ene[,-3]
 
 # Cambia nombre variables
 ene$sexo <- set_label(x = ene$sexo,label = "Sexo")
