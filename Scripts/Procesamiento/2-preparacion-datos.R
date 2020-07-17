@@ -37,8 +37,8 @@ ene$p_con <- factor(ene$p_con, labels= c("No tiene contrato", "Sí tiene contrat
 ene$t_con <- factor(ene$t_con, labels= c("Definido", "Indefinido"))
 
 # Nivel educativo
-# Variable de 9 categorías, recodificar en 4.
-# 1. Sin estudios / 2. Secundaria e inferior / 3. Técnica / 4. Universitaria o superior
+# Variable de 9 categorías, recodificar en 3.
+# 1. Secundaria e inferior / 2. Técnica / 3. Universitaria o superior
 ene$cine <- as.numeric(ene$cine)
 ene <- mutate(ene, cine = car::recode(ene$cine, "1:5 = 1; 6 = 2; 7:9 = 3; else = NA"))
 ene$cine <- factor(ene$cine, labels= c("Secundaria e inferior", "Técnica", "Universitaria o superior"))
@@ -46,6 +46,16 @@ table(ene$cine)
 
 # Para comprobar
 dfSummary(ene, style = "grid")
+ene <- ene[,-3]
+
+# Cambia nombre variables
+ene$sexo <- set_label(x = ene$sexo,label = "Sexo")
+ene$rama <- set_label(x = ene$rama,label = "Rama de actividad económica")
+ene$p_con <- set_label(x = ene$p_con,label = "Posesión contrato")
+ene$t_con <- set_label(x = ene$t_con,label = "Tipo contrato")
+ene$cine <- set_label(x = ene$cine,label = "Nivel educativo")
+ene$tramo_etario <- set_label(x = ene$tramo_etario,label = "Tramo etario")
+ene$macroz <- set_label(x = ene$macroz,label = "Macrozona")
 
 # Guardar base en formato RDS, con bases listas para análisis
 saveRDS(ene, file = "/cloud/project/Datos/DatosIntermedios/ene-editada.rds")

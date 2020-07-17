@@ -12,11 +12,11 @@ bibliography: biblio.bib
 knitr::opts_chunk$set(echo = FALSE)
 # Esta segunda línea se agrega para indicar que la carpeta desde donde debe partir buscando archivos es la del proyecto R
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
-library(dplyr)
+library(summarytools)
 ```
 
 ```{r cargar-datos}
-# Carga archivo (lista) con los resultados
+ene <- readRDS(file="/cloud/project/Datos/DatosIntermedios/ene-editada.rds")
 resultados <- readRDS("/cloud/project/Datos/DatosAnalisis/resultados-reporte.rds")
 ```
 
@@ -28,8 +28,7 @@ Los procesos que reestructuraron la organización del empleo a mediados de siglo
 
 Este desarrollo, sin embargo, no afecta a todos los grupos sociales en la misma medida: el aumento de la flexibilidad supone una desregulación dirigida, alterando y reformando en primera instancia los márgenes del empleo [@atkinson_manpower_1984], para luego ampliarse al resto de la fuerza de trabajo [@oreilly_five_2015]. Los mismos autores señalan que este proceso ha promovido la segmentación del mercado laboral, llevándose la carga flexibilizadora aquellos empleados que son considerados atípicos, o al margen del empleo formal. Varios autores dan cuenta cómo la población joven es aquella que sufre estas condiciones en mayor medida [@furlong_labour_1990; @jacinto_estrategias_2006; @oreilly_five_2015; @weller_insercion_2007], en el denominado mercado laboral juvenil (o _Youth Labor Market_ [YLM], por su origen británico), el cual discute si estas condiciones son propias de la juventud, o se debe a situaciones de paso hacia el ingreso al mercado laboral [@ashton_restructuring_1990].
 
-# Objetivos proyecto
-En este sentido, y dado el carácter acotado del presente proyecto (el cual consta de solo un semestre), es que en el presente escrito se propone los siguientes objetivos, entendiendo los procesos de reestructuración y flexibilización de la fuerza de trabajo juvenil en los últimos años.
+En este sentido, y dado el carácter acotado del presente proyecto (el cual consta de solo un semestre), es que en el presente escrito se propone los siguientes objetivos, entendiendo los procesos de reestructuración y flexibilización de la fuerza de trabajo juvenil en los últimos años:
 
 ## Objetivo general
 
@@ -37,62 +36,104 @@ Caracterizar la temporalidad contractual de la población joven en Chile en base
 
 ## Objetivos específicos
 
-* Caracterizar la posesión de contrato de las y los jóvenes asalariados en Chile, por variables sociodemográficas.
-* Describir la temporalidad contractual de las y los jóvenes asalariados en Chile, según variables sociodemográficas (como sexo, edad, región de residencia) y educativa.
+* Caracterizar la posesión de contrato de las y los jóvenes asalariados en Chile, por variables sociodemográficas (como sexo, macrozona de residencia y tramo etario).
+* Describir la temporalidad contractual de las y los jóvenes asalariados en Chile, según variables sociodemográficas y educativa.
 * Identificar la temporalidad de la ocupación según las ramas de empleo de la población joven ocupada.
 
 # Metodología
 
-Debido a las características propias del ejercicio, este responde a una metodología cuantitativa, con un enfoque descriptivo. Para ello, utilizamos fuentes de segundo orden, en específico, la Encuesta Nacional de Empleo (ENE) desarrollada por el Instituto Nacional de Estadísticas (INE).
+Debido a las características propias del ejercicio, este responde a una metodología cuantitativa, con un enfoque descriptivo. Para ello, utilizamos fuentes de segundo orden, en específico, la Encuesta Nacional de Empleo (ENE) desarrollada por el Instituto Nacional de Estadísticas (INE). Esta encuesta, de caracter trimestral, entrega datos sobre la ocupación y desocupación a nivel nacional, entre otros aspectos. Para este ejercicio utilizaremos el trimestre marzo-abril-mayo (MAM) de 2019.
 
+En torno a los indicadores a utilizar, he decidido hacer un ejercicio resumido pero que logre entregar información sustantiva sobre el fenómeno. En este sentido, usaré tanto variables de empleo como sociodemográficas, las cuales describiré a continuación (entre paréntesis el nombre de la variable en la base de datos):
+
+Variables de empleo:
+
+- Posesión de contrato (b8): permite filtrar por quienes poseen o no contrato. Sirve como _proxy_ de calidad de empleo.
+- Temporalidad contractual (b9): variable categórica que nos muestra la duración de este contrato (definido o indefinido). Funciona como _proxy_ de flexibilidad laboral.
+
+Variables sociodemográficas:
+
+- Sexo (sexo): para identificar las desiguales condiciones por sexo registral.
+- Tramo edad (edad): variable edad recodificada en tramos: 15 a 19 años, 20 a 24 años y de 25 a 29 años.
+- Macrozona de residencia (region): recodifiqué las 16 regiones en 4 macrozonas: 1. Norte (XV, I a IV); 2. Centro (V a VII y XIII); 3. Sur (VIII a X, XIV y XVI); y 4. Austral (XI a XII); para saber cómo se comportan las variables a nivel país, en relación a las particularidades de cada gran zona.
+- Nivel educativo (cine): como gran indicador de desigualdades sociales, la recodifiqué en 3 grupos: 1. Secundaria e inferior; 2. Técnica; y 3. Universitaria o superior.
+
+Para el análisis, realizaré cruces bivariados simples mediante el paquete `summarytools`. Para un análisis más certero, todos los cruces serán realizados aplicando el factor de expansión de la ENE, con calibración actualizada según el Censo 2017, la variable `fact_cal`. 
+
+\newpage
 
 # Resultados
 
-A nivel de descriptivos preliminares, las variables a considerar son las siguientes:
+Luego de revisar la metodología, organizaremos el apartado de resultados en dos ámbitos, en relación a nuestros objetivos específicos: análisis por posesión de contrato de las y los jóvenes asalariados; y análisis según la temporalidad de este contrato, como principal indicador de flexibilidad a la cual están expuestos en sus puestos de trabajo.
 
-## Por tipo de contrato
+A nivel de descriptivos preliminares, las variables a considerar y sus principales distribuciones muestrales son las siguientes:
 
-Con la función `knitr::kable(objeto_a_imprimir)`, podemos imprimir una tabla en formato *R Markdown*.
-
-Para ello hay que tener clara la posición de los resultados en el archivo tipo "lista" que se creó en el tercer código (*3-construccion-resultados.R*).
-
-```{r tabla1}
-knitr::kable(resultados[[1]], digits = 1, caption = "Posesión de contrato por sexo")
-```
-
-Luego se imprime el resultado 2 creado en el tercer código, y así sucesivamente.
- (*3-construccion-resultados.R*).
-
-```{r tabla2}
-knitr::kable(resultados[[2]], digits = 1, caption = "Posesión de contrato por macrozona")
-```
-
-asd
-
-```{r tabla3}
-knitr::kable(resultados[[3]], digits = 1, caption = "Posesión de contrato por tramo etario",
-             format = "latex")
+```{r des var, results='asis', warning=FALSE}
+dfSummary(ene, plain.ascii= TRUE, headings = FALSE)
 ```
 
 \newpage
 
-# Gráficos
+## Posesión de contrato
 
-La lógica para incorporar los gráficos es la misma.
-```{r grafico1, message=FALSE, warning=FALSE, fig.align='center', out.width='80%'}
-resultados[[4]]
+En relación a la posesión de contrato, podemos dar cuenta de que en términos proporcionales el 82% de la población joven ocupada indica tener contrato de trabajo escrito. A nivel de sexo, esta proporción relativa es prácticamente igual entre hombres y mujeres (81% versus un 82%). En términos absolutos, y dada la mayor exclusión femenina del trabajo productivo, hay más hombres que mujeres que señalan poseer contrato de trabajo escrito: del total de 1 millón 500 mil ocupados, casi 700 mil hombres jóvenes reportan poseer contrato, cifra que se reduce a 580 mil mujeres jóvenes.
+
+```{r tabla1, message=FALSE, warning=FALSE, results='asis'}
+ctable(x=ene$p_con, y=ene$sexo, prop = "c",
+       weights = ene$fact_cal, style = "rmarkdown", headings = FALSE)
 ```
-sadf
+
+En cuanto a la posesión de contrato por tramo etario, se aprecia que ésta va aumentando a medida que la persona adquiere más años. Esto se relaciona con que el acceso al empleo formal, a nivel comparado, posee una forma de U invertida: aquellas personas más jóvenes son quienes poseen menor acceso a empleo formal con contrato, mientras que aquellos tramos de edad central reportan la mayor proporción de ocupados con contrato escrito. Esto es relevante debido a la necesidad de acceso a trabajo decente por parte de las juventudes, dando cuenta de que al inicio de sus trayectorias laborales deban conformarse  con empleos de baja calidad y seguridad.
+
+```{r tabla2, message=FALSE, warning=FALSE, results='asis'}
+ctable(ene$p_con, ene$tramo_etario, prop = "c",
+       weights = ene$fact_cal, style = "rmarkdown", headings = FALSE)
+```
+
+En torno al nivel educativo de la persona joven y sus acceso a contrato de trabajo escrito, los datos del trimestre MAM 2019 muestran que aquellos jóvenes con títulos técnicos o universitarios o superior poseen una mayor proporción relativa de contratos de trabajo, en relación a sus pares que poseen educación secundaria e inferior.
+
+```{r tabla3, message=FALSE, warning=FALSE, results='asis'}
+ctable(ene$p_con, ene$cine, prop = "c",
+       weights = ene$fact_cal, useNA="no", style = "rmarkdown",headings = FALSE)
+```
+\newpage
+
+Por último, al comparar la posesión de contrato por macrozona y género, podemos dar cuenta de que hay una concentración de contratados en la zona central, debido a alta cantidad de ocupados jóvenes en ella. Al comparar por sexo, se da cuenta de que la posesión de contrato es proporcionalmente más alta en hombres jóvenes que en mujeres, lo que se relaciona a la menor calidad de empleo femenino. 
+
+```{r grafico1, message=FALSE, warning=FALSE, fig.align='center', out.width='80%'}
+resultados[[1]]
+```
+
+\newpage
+
+## Tipo de contrato
+
+En cuanto al tipo de contrato............
+
+```{r tabla4, results='asis'}
+ctable(ene$t_con, ene$sexo, prop = "c",
+       weights = ene$fact_cal, rows=factor(ene$p_con==1), style = "rmarkdown", headings = FALSE)
+```
+
+Por último sobre el tipo de contrato por rama y sexo, se puede apreciar una mayor proporción de .........
 
 ```{r grafico2, message=FALSE, warning=FALSE, fig.align='center', out.width='80%'}
-resultados[[9]]
+resultados[[2]]
 ```
 
-También podemos agregar el mismo gráfico, pero directamente desde el archivo de imagen desde el directorio `Output`
+\newpage
 
-![](/cloud/project/Salidas/Figura1.png)
-![](/cloud/project/Salidas/Figura2.png)
+# Conclusiones
+
+En el ejercicio precedente caracterizamos la temporalidad contractual de la población joven ocupada en Chile en base a diversas variables sociodemográficas como de empleo, mediante el uso de herramientas de _software_ libre en pos de la replicabilidad y reproductibilidad de este ejercicio.
+
+Entre sus principales conclusiones, podemos dar cuenta de que una mayor cantidad de hombres jóvenes que de mujeres poseen contrato de trabajo escrito. Por su parte, a medida que se aumenta el nivel educativo de la persona joven, también podemos ver que aumenta la proporción de personas contratadas, cuestión relevante a la hora de analizar los procesos que estructuran el mercado laboral juvenil. 
+
+Por su parte, en relación a la temporalidad del vínculo, como _proxy_ de flexibilidad laboral, pudimos apreciar que la población masculina nuevamente es quien accede en mayor medida a este tipo de contrato, dando cuenta de la brecha existente entre la calidad del empleo masculino en detrimento del femenino. A nivel regional, la macrozona centro es la que concentra la mayor cantidad de contratos a tiempo indefinido, reforzando la idea de que el centralismo del país también estructura las oportunidades de empleo a la acceden las y los jóvenes.
+
+Por último, este ejercicio nos permite mostrar que la replicabilidad con fuentes de datos nacionales es factible, generando bastantes desafíos para su uso dentro de las y los científicos sociales del país.
 
 
 \newpage
+
 # Referencias

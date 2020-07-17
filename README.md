@@ -34,7 +34,7 @@ Variables sociodemográficas:
 + Región de residencia: para saber cómo se comportan las variables a nivel local (region).
 + Nivel educativo: como gran indicador de desigualdades sociales (cine).
 
-# Estructura de datos
+# Estructura del proyecto
 
 En base a lo que señalaba en un comienzo, la idea de este proyecto es que lo puedas replicar y reproducir para quien desee investigar sobre inserción laboral juvenil. Así, se basa en la estructura del [Protocolo TIER](https://www.projecttier.org/tier-protocol/demo-project/), conteniendo carpetas donde encontrarás:
 + Datos: contiene las bases de datos ocupadas en las diversas etapas de la investigación (Análisis, Iniciales e intermedias).
